@@ -38,6 +38,7 @@ public class MemberDAO {
 	public MemberVO findOne(Query query) {
 
 		MemberVO memberVO = mongoTemplate.findOne(query, MemberVO.class, "member");
+	
 		return memberVO;
 	}
 	
@@ -46,6 +47,10 @@ public class MemberDAO {
 		mongoTemplate.updateFirst(query, update, "member");
 		
 	}
+	
+
+	
+	
 	
 
 }
