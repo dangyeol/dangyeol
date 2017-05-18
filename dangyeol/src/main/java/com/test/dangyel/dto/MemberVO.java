@@ -1,5 +1,7 @@
 package com.test.dangyel.dto;
 
+import java.util.Arrays;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="member")
@@ -18,6 +20,12 @@ public class MemberVO {
 	
 	
     
+	@Override
+	public String toString() {
+		return "MemberVO [_id=" + _id + ", mem_Email=" + mem_Email + ", mem_Pwd=" + mem_Pwd + ", mem_Name=" + mem_Name
+				+ ", mem_Card=" + Arrays.toString(mem_Card) + ", mem_Purchase=" + Arrays.toString(mem_Purchase) + "]";
+	}
+
 	public String get_id() {
 		return _id;
 	}

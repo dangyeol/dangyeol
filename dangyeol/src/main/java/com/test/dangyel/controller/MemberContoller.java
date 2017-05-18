@@ -66,5 +66,37 @@ public class MemberContoller {
 
 		memberService.MemberEtcUpdate(map,"mem_Card");
 	}
+	
+	
+	@RequestMapping(value="/cardfind",method=RequestMethod.POST)
+	public @ResponseBody MemberVO CardFind(@RequestBody Map<String,Object> map){
+		
+	MemberVO memberVO= memberService.CardFind(map);
+	
+	return memberVO;
+		
+		
+	}
+	
+	
+	@RequestMapping(value="productbuy", method=RequestMethod.POST)
+	public void ProductBuy(@RequestBody Map<String,Object> map){
+		
+		
+		memberService.MemberEtcUpdate(map, "mem_Purchase");
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 
 }

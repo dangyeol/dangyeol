@@ -74,7 +74,10 @@ public class MemberService {
 			Iterator<String> keys = map.keySet().iterator();
 			while (keys.hasNext()) {
 				String key = keys.next();
+			 
+				
 				dbObject.append(key, map.get(key).toString());
+				
 			}
 
 			list.add(dbObject);
@@ -97,5 +100,25 @@ public class MemberService {
 		}
 
 	}
+	
+	public MemberVO CardFind(Map map){
+		
+		Criteria criteria = new Criteria("mem_Email");
+		criteria.is(map.get("mem_Email").toString());
+		
+		Query query = new Query(criteria);
+		query.fields().include("mem_Card");
+				
+		
+		MemberVO memberVO=memberDAO.findOne(query);
+		System.out.println(memberVO.toString());
+		return memberVO;
+		
+		
+	}
+	
+	
+	
+	
 
 }
