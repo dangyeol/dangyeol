@@ -20,6 +20,14 @@
 
 </head>
 <body>
-	<tiles:insertAttribute name="header" />
+	<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<tiles:insertAttribute name="header" />
+	</div>
+	</nav>
+         <tiles:insertAttribute name="content" />
+	<br>
+
+	<tiles:insertAttribute name="footer" />
 </body>
 </html>

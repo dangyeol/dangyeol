@@ -1,18 +1,13 @@
 package com.test.dangyel.dao;
 
-import java.util.Map;
-
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
-import com.mongodb.BasicDBList;
-import com.mongodb.BasicDBObject;
 import com.test.dangyel.dto.MemberVO;
-import com.test.dangyel.dto.ProductVO;
+import com.test.dangyel.dto.PurchaseVO;
 
 public class MemberDAO {
 
@@ -45,6 +40,14 @@ public class MemberDAO {
 	public void update(Query query,Update update){
 		
 		mongoTemplate.updateFirst(query, update, "member");
+		
+	}
+	
+	public PurchaseVO find(Query query){
+		
+		PurchaseVO purchaseVO =(PurchaseVO) mongoTemplate.find(query, PurchaseVO.class, "member");
+		
+		return purchaseVO;
 		
 	}
 	
