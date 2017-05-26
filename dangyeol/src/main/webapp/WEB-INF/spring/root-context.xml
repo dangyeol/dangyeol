@@ -18,6 +18,12 @@
 	<bean id="ProductDAO" class="com.test.dangyel.dao.ProductDAO"
 		p:mongoTemplate-ref="mongoTemplate" />
 
+	<bean id="CardMemberDAO" class="com.test.dangyel.dao.CardMemberDAO"
+		p:mongoTemplate-ref="mongoTemplate" />
+
+	<bean id="BenefitDAO" class="com.test.dangyel.dao.BenefitDAO"
+		p:mongoTemplate-ref="mongoTemplate" />
+
 
 	<!-- /////////////////////////////Service//////////////////////////////////////// -->
 
@@ -28,5 +34,12 @@
 		p:productDAO-ref="ProductDAO" p:memberDAO-ref="MemberDAO"
 		p:memberService-ref="MemberService" />
 
+	<bean id="CardMemberService" class="com.test.dangyel.service.CardMemberService"
+		p:cardMemberDAO-ref="CardMemberDAO" />
+
+	<bean id="BenefitService" class="com.test.dangyel.service.BenefitService"
+		p:benefitDAO-ref="BenefitDAO" p:memberService-ref="MemberService" p:productService-ref="ProductService"/>
+
+    
 
 </beans>

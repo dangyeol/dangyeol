@@ -1,5 +1,6 @@
 package com.test.dangyel.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.test.dangyel.common.RSA;
+import com.test.dangyel.dto.CardVO;
 import com.test.dangyel.dto.MemberVO;
+import com.test.dangyel.dto.PurchaseVO;
 import com.test.dangyel.service.MemberService;
 
 @Controller
@@ -34,6 +37,7 @@ public class MemberContoller {
 		memberVO.setMem_Email(map.get("mem_Email").toString());
 		memberVO.setMem_Pwd(map.get("mem_Pwd").toString());
 		memberVO.setMem_Name(map.get("mem_Name").toString());
+	
 
 		Criteria criteria = new Criteria("mem_Email");
 		criteria.is(map.get("mem_Email").toString());
@@ -62,41 +66,34 @@ public class MemberContoller {
 	}
 
 	@RequestMapping(value = "/cardregist", method = RequestMethod.POST)
-	public void CardRegist(@RequestBody Map<String, Object> map) {
+	public @ResponseBody boolean CardRegist(@RequestBody Map<String, Object> map) {
+        System.out.println("dddd");
+		boolean flag = true;
 
-		memberService.MemberEtcUpdate(map,"mem_Card");
+		CardVO cardVO = new CardVO();
+		cardVO.setMem_CardName(map.get("mem_CardName").toString());
+		cardVO.setMem_CardNum(map.get("mem_CardNum").toString());
+		cardVO.setMem_CardPeriod(map.get("mem_CardPeriod").toString());
+
+		memberService.MemberaddToUpdate("mem_Card", cardVO, map);
+		return flag;
 	}
-	
-	
-	@RequestMapping(value="/cardfind",method=RequestMethod.POST)
-	public @ResponseBody MemberVO CardFind(@RequestBody Map<String,Object> map){
-		
-	MemberVO memberVO= memberService.CardFind(map);
-	
-	return memberVO;
-		
-		
+
+	@RequestMapping(value = "/cardfind", method = RequestMethod.POST)
+	public @ResponseBody MemberVO CardFind(@RequestBody Map<String, Object> map) {
+
+		MemberVO memberVO = memberService.CardFind(map);
+		return memberVO;
+
 	}
-	
-	
-	@RequestMapping(value="productbuy", method=RequestMethod.POST)
-	public void ProductBuy(@RequestBody Map<String,Object> map){
+
+	@RequestMapping(value = "/buylist", method = RequestMethod.POST)
+	public @ResponseBody PurchaseVO BuyList(@RequestBody Map<String, Object> map) {
+
+		PurchaseVO  purchaseVO = memberService.BuyList(map);
 		
-		
-		memberService.MemberEtcUpdate(map, "mem_Purchase");
-		
-		
-		
-		
-		
-		
+		return purchaseVO;
+
 	}
-	
-	
-	
-	
-	
-	
-	
 
 }
